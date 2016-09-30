@@ -31,8 +31,7 @@ case class Board(private val array: Array[Array[BoardSymbol]]) {
   }
 
   def shipsLeft = array.flatten.count(_ == Board.BOARD_SHIP)
-
-  def print() = array.foreach(l => println(l.mkString("")))
+  def print() = array.reverse.foreach(l => println(l.mkString("")))
 }
 
 object Board {
@@ -43,9 +42,10 @@ object Board {
     override def toString = s
   }
   val BOARD_EMPTY = BoardSymbol(".")
-  val BOARD_SHIP = BoardSymbol("X")
-  val SHOT_MISS = BoardSymbol("~")
-  val SHOT_HIT = BoardSymbol("H")
+  val BOARD_SHIP = BoardSymbol("H")
+  val SHOT_MISS = BoardSymbol("O")
+
+  val SHOT_HIT = BoardSymbol("-")
   val ALREADY_GUESSED = BoardSymbol("G")
 
   def contains(ps: Point*) =

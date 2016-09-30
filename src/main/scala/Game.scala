@@ -7,8 +7,8 @@ object Game {
     val guess = entityGuess(currentPlayer)
 
     otherPlayer.board.hit(guess) match {
-      case Board.SHOT_HIT => println("Hit!")
-      case Board.SHOT_MISS => println("Miss.")
+      case Board.SHOT_HIT => println(currentPlayer.name + " hits!")
+      case Board.SHOT_MISS => println(currentPlayer.name + " misses.")
       case Board.ALREADY_GUESSED => println("You already tried it.")
     }
     currentPlayer match {
