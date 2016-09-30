@@ -1,0 +1,1 @@
+case class Position(a: Point, b: Point)
