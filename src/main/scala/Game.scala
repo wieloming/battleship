@@ -11,8 +11,8 @@ object Game {
       case Board.SHOT_MISS => println("Miss.")
       case Board.ALREADY_GUESSED => println("You already tried it.")
     }
-//    TODO: remove
-//    println(otherPlayer.name + ": ")
+    //    TODO: remove
+    //    println(otherPlayer.name + ": ")
     otherPlayer.board.print()
     if (otherPlayer.board.shipsLeft <= 0) println("You win!")
     else gameLoop(otherPlayer, currentPlayer, userGuess)

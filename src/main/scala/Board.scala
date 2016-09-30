@@ -7,16 +7,14 @@ case class Board(private val array: Array[Array[BoardSymbol]]) {
       val x = p.a.x
       val y1 = p.a.y
       val y2 = p.b.y
-      for (y <- y1 to y2 by (if (y1 > y2) -1 else 1)) {
-        array(x)(y) = Board.BOARD_SHIP
-      }
+      val step = if (y1 > y2) -1 else 1
+      for (y <- y1 to y2 by step) array(x)(y) = Board.BOARD_SHIP
     } else {
       val y = p.a.y
       val x1 = p.a.x
       val x2 = p.b.x
-      for (x <- x1 to x2 by (if (x1 > x2) -1 else 1)) {
-        array(x)(y) = Board.BOARD_SHIP
-      }
+      val step = if (x1 > x2) -1 else 1
+      for (x <- x1 to x2 by step) array(x)(y) = Board.BOARD_SHIP
     }
     Board(array)
   }
