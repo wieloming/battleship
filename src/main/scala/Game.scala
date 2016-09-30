@@ -3,18 +3,20 @@ import scala.annotation.tailrec
 object Game {
 
   @tailrec
-  def gameLoop(currentPlayer: Player, otherPlayer: Player, userGuess: Player => Point): Unit = {
-    val guess = userGuess(currentPlayer)
+  def gameLoop(currentPlayer: Entity, otherPlayer: Entity, entityGuess: Entity => Point): Unit = {
+    val guess = entityGuess(currentPlayer)
 
     otherPlayer.board.hit(guess) match {
       case Board.SHOT_HIT => println("Hit!")
       case Board.SHOT_MISS => println("Miss.")
       case Board.ALREADY_GUESSED => println("You already tried it.")
     }
-    //    TODO: remove
-    //    println(otherPlayer.name + ": ")
-    otherPlayer.board.print()
-    if (otherPlayer.board.shipsLeft <= 0) println("You win!")
-    else gameLoop(otherPlayer, currentPlayer, userGuess)
+    currentPlayer match {
+      case ai: AI => otherPlayer.board.print()
+      case _ => ()
+    }
+
+    if (otherPlayer.board.shipsLeft <= 0) println(currentPlayer.name + " wins!")
+    else gameLoop(otherPlayer, currentPlayer, entityGuess)
   }
 }
